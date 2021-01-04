@@ -1,0 +1,7 @@
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Debug\Game.exe.config
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Debug\Game.exe
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Debug\Game.pdb
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Temp\Debug\Game.csprojAssemblyReference.cache
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Temp\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Temp\Debug\Game.exe
+C:\Users\tomat\OneDrive\Desktop\MinimalistGameFramework\Builds\Temp\Debug\Game.pdb
