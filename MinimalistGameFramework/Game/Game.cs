@@ -173,6 +173,7 @@ class Game
             {
                 jump = false;
                 count = 0;
+                //
             }
         }
         if (charLocation.Y < 100)
