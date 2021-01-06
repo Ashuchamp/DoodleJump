@@ -14,6 +14,7 @@ class Game
     readonly Texture bulletPic = Engine.LoadTexture("bullet.png");
     readonly Texture enemyPic = Engine.LoadTexture("enemy.png");
     readonly Texture trampolineTex = Engine.LoadTexture("trampoline.png");
+    readonly Font font = Engine.LoadFont("FiraCode-Medium.ttf", pointSize: 20);
     //readonly Texture Tplat2 = Engine.LoadTexture("plat.png");
     //readonly Texture Tplat3 = Engine.LoadTexture("plat.png");
 
@@ -34,6 +35,8 @@ class Game
 
     Vector2 plat3 = new Vector2(250, 30);
 
+    Vector2 scoreVec = new Vector2(10, 10);
+
     int time = 0;
     //    public void plats()
     //    { 
@@ -52,6 +55,7 @@ class Game
 
     }
 
+    int score = 0;
     int count = 0;
     Boolean jump = false;
 
@@ -106,6 +110,7 @@ class Game
         {
             Engine.DrawTexture(trampolineTex, tramp);
         }
+        Engine.DrawString(score.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
@@ -156,6 +161,7 @@ class Game
             jump = true;
             if (count < 25 && jump == true)
             {
+                score++;
                 count++;
                 double x;
                 if (hitting(charLocation, trampolines))
