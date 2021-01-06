@@ -13,6 +13,7 @@ class Game
     readonly Texture customPlatT = Engine.LoadTexture("plat1.png");
     readonly Texture bulletPic = Engine.LoadTexture("bullet.png");
     readonly Texture enemyPic = Engine.LoadTexture("enemy.png");
+    readonly Texture trampolineTex = Engine.LoadTexture("trampoline.png");
     //readonly Texture Tplat2 = Engine.LoadTexture("plat.png");
     //readonly Texture Tplat3 = Engine.LoadTexture("plat.png");
 
@@ -21,6 +22,7 @@ class Game
     Vector2 charLocation = new Vector2(145, 440);
     //Vector2 platLocation = new Vector2(100, 300);
     ArrayList platforms = new ArrayList();
+    ArrayList trampolines = new ArrayList();
     ArrayList bullets = new ArrayList();
     ArrayList enemies = new ArrayList();
     ArrayList brokenPlatforms = new ArrayList();
@@ -100,6 +102,10 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
+        foreach(Vector2 tramp in trampolines)
+        {
+            Engine.DrawTexture(trampolineTex, tramp);
+        }
 
         time++;
 
@@ -152,7 +158,14 @@ class Game
             {
                 count++;
                 double x;
-                x = charLocation.Y - 5;
+                if (hitting(charLocation, trampolines))
+                {
+                    x = charLocation.Y - 20;
+                }
+                else
+                {
+                    x = charLocation.Y - 5;
+                }
                 charLocation.Y = (float)x;
                 System.Threading.Thread.Sleep(10);
             }
@@ -160,6 +173,7 @@ class Game
             {
                 jump = false;
                 count = 0;
+                //
             }
         }
         if (charLocation.Y < 100)
@@ -306,6 +320,13 @@ class Game
             temp.Y = temp.Y + 10;
             enemies[i] = temp;
         }
+
+        for (int i = 0; i < trampolines.Count; i++)
+        {
+            Vector2 temp = (Vector2)trampolines[i];
+            temp.Y = temp.Y + 10;
+            trampolines[i] = temp;
+        }
     }
 
     public void makePlatforms()
@@ -323,11 +344,18 @@ class Game
             platforms.RemoveAt(0);
 
             int enemyProb = random.Next(0, 100);
+            int trampolineProb = random.Next(0, 100);
 
             if (enemyProb < 20)
             {
                 Vector2 enemyTemp = new Vector2(newX, newY - 40);
                 enemies.Add(enemyTemp);
+            }
+
+            if(trampolineProb < 10)
+            {
+                Vector2 trampolineTemp = new Vector2(newX, newY - 40);
+                trampolines.Add(trampolineTemp);
             }
         }
     }
