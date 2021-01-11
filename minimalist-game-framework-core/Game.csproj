@@ -65,6 +65,7 @@
     <Compile Include="Engine\Utility\Vector2.cs" />
     <Compile Include="Engine\SDL2\SDL2_mixer.cs" />
     <Compile Include="Engine\SDL2\SDL2_ttf.cs" />
+    <Compile Include="Platform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
