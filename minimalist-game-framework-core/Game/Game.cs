@@ -61,11 +61,20 @@ class Game
     Boolean movingDown = false;
     int downCount = 0;
     int lastPlatY = 470;
+
+    ScoreBoard sb = new ScoreBoard();
+
     public void Update()
     {
         //platforms.Add(plat1);
         //platforms.Add(plat2);
         //platforms.Add(plat3);
+
+        if (isGameOver(charLocation))
+        {
+            sb.modifyScoreBoard(score);
+        }
+
         Random random = new System.Random();
 
         if (!jump && !movingDown)
@@ -394,6 +403,11 @@ class Game
         }
 
         return false;
+    }
+
+    public Boolean isGameOver(Vector2 playerLocation)
+    {
+        return playerLocation.Y > Resolution.Y;
     }
 
 }
