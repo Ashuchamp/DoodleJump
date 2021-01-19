@@ -53,9 +53,11 @@ class Game
 
     }
 
+    int maxScore = 0;
     int score = 0;
     int count = 0;
     Boolean jump = false;
+    Boolean alreadyUpdatedScoreBoard = false;
 
     Boolean compiled = false;
     Boolean movingDown = false;
@@ -79,7 +81,24 @@ class Game
 
         if (!jump && !movingDown)
         {
-            charLocation.Y += 5;
+            if (isGameOver(charLocation))
+            {
+                if (!alreadyUpdatedScoreBoard)
+                {
+                    sb.modifyScoreBoard(maxScore);
+                    alreadyUpdatedScoreBoard = true;
+                }
+            }
+            else
+            {
+                charLocation.Y += 5;
+                score -= 5;
+            }
+        }
+
+        if (score > maxScore)
+        {
+            maxScore = score;
         }
         //charLocation.Y += 5;
 
@@ -115,11 +134,11 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
-        foreach(Vector2 tramp in trampolines)
+        foreach (Vector2 tramp in trampolines)
         {
             Engine.DrawTexture(trampolineTex, tramp);
         }
-        Engine.DrawString(score.ToString(), scoreVec, Color.Purple, font);
+        Engine.DrawString(maxScore.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
@@ -130,7 +149,7 @@ class Game
         bulletStuff();
         //}
 
-        
+
         //breakPlatform();
 
     }
@@ -174,10 +193,12 @@ class Game
                 if (hitting(charLocation, trampolines))
                 {
                     x = charLocation.Y - 20;
+                    score += 20;
                 }
                 else
                 {
                     x = charLocation.Y - 5;
+                    score += 5;
                 }
                 charLocation.Y = (float)x;
                 System.Threading.Thread.Sleep(10);
@@ -367,7 +388,7 @@ class Game
                 enemies.Add(enemyTemp);
             }
 
-            if(trampolineProb < 10)
+            if (trampolineProb < 10)
             {
                 Vector2 trampolineTemp = new Vector2(newX, newY - 40);
                 trampolines.Add(trampolineTemp);
