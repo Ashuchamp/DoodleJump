@@ -19,7 +19,7 @@ internal class ScoreBoard
         }
         Console.WriteLine();
     }
-
+  
     //No priority queues in C#, so array had to be used
     public void modifyScoreBoard(int score)
     {
@@ -42,12 +42,12 @@ internal class ScoreBoard
     public void outputScoreBoard()
     {
         String[] output = new String[10];
-        for (int i = 0; i < scores.Length; i++)
+        for(int i = 0; i < scores.Length; i++)
         {
-            output[i] = (i + 1) + " " + scores[i];
+            output[i] = (i + 1) + " " + scores[i]; 
         }
         String path = @"C:\Users\brian\source\repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Docs\scores.txt";
-        foreach (int score in scores)
+        foreach(int score in scores)
         {
             File.WriteAllLines(path, output);
         }

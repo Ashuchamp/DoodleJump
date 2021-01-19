@@ -33,7 +33,7 @@ internal class Platform
 
     public bool hittingPlatform(Vector2 charVec)
     {
-        if (Math.Abs(charVec.X - vector.X) <= 40 && Math.Abs(charVec.Y - vector.Y) <= 29)
+        if(Math.Abs(charVec.X - vector.X) <= 40 && Math.Abs(charVec.Y - vector.Y) <= 29)
         {
             numTimesTouched++;
             return true;

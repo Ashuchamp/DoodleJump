@@ -72,6 +72,11 @@ class Game
         //platforms.Add(plat2);
         //platforms.Add(plat3);
 
+        if (isGameOver(charLocation))
+        {
+            sb.modifyScoreBoard(score);
+        }
+
         Random random = new System.Random();
 
         if (!jump && !movingDown)
@@ -277,7 +282,7 @@ class Game
         for (int i = 0; i < brokenPlatforms.Count; i++)
         {
             Platform platform = platforms[i];
-            if ((Math.Abs(charLocation.X - platform.getVector().X) <= 40 && Math.Abs(charLocation.Y - platform.getVector().Y) <= 29)
+            if ((Math.Abs(charLocation.X - platform.getVector().X) <= 40 && Math.Abs(charLocation.Y - platform.getVector().Y) <= 29) 
                 && random.Next(0, 100) > 80)
             {
                 brokenPlatforms.RemoveAt(i);
@@ -341,8 +346,8 @@ class Game
         {
             Platform plat = platforms[i];
             Vector2 temp = plat.getVector();
-            temp.Y = temp.Y + 10;
-            platforms[i].modifyVector(temp);
+            temp.Y = temp.Y + 10;           
+            platforms[i].modifyVector(temp);         
         }
 
         for (int i = 0; i < enemies.Count; i++)
@@ -397,6 +402,10 @@ class Game
         {
             if (platform.hittingPlatform(charLocation))
             {
+                if(platform.timesTouchedPlatform() == 1)
+                {
+                    score++;
+                }
                 return true;
             }
         }
