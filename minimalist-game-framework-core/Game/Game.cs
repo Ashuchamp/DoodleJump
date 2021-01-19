@@ -71,12 +71,6 @@ class Game
         //platforms.Add(plat1);
         //platforms.Add(plat2);
         //platforms.Add(plat3);
-
-        if (isGameOver(charLocation))
-        {
-            sb.modifyScoreBoard(score);
-        }
-
         Random random = new System.Random();
 
         if (!jump && !movingDown)
