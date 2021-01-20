@@ -9,7 +9,7 @@ internal class ScoreBoard
     public ScoreBoard()
     {
         scores = new int[10];
-        String[] scoreLines = System.IO.File.ReadAllLines(@"C:\Users\brian\source\repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Docs\scores.txt");
+        String[] scoreLines = System.IO.File.ReadAllLines(@"C:\Users\tomat\OneDrive\Documents\GitHub\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Docs\scores.txt");
         foreach(String str in scoreLines)
         {
             String[] lineArr = str.Split();
@@ -46,7 +46,7 @@ internal class ScoreBoard
         {
             output[i] = (i + 1) + " " + scores[i]; 
         }
-        String path = @"C:\Users\brian\source\repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Docs\scores.txt";
+        String path = @"..\Docs\scores.txt";
         foreach(int score in scores)
         {
             File.WriteAllLines(path, output);
