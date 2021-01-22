@@ -53,8 +53,8 @@ class Game
 
     }
 
-    int maxScore = 0;
-    int score = 0;
+    int maxHeight = 0;
+    int height = 0;
     int count = 0;
     Boolean jump = false;
     Boolean alreadyUpdatedScoreBoard = false;
@@ -79,20 +79,20 @@ class Game
             {
                 if (!alreadyUpdatedScoreBoard)
                 {
-                    sb.modifyScoreBoard(maxScore);
+                    sb.modifyScoreBoard(maxHeight);
                     alreadyUpdatedScoreBoard = true;
                 }
             }
             else
             {
                 charLocation.Y += 5;
-                score -= 5;
+                height -= 5;
             }
         }
 
-        if (score > maxScore)
+        if (height > maxHeight)
         {
-            maxScore = score;
+            maxHeight = height;
         }
         //charLocation.Y += 5;
 
@@ -132,7 +132,7 @@ class Game
         {
             Engine.DrawTexture(trampolineTex, tramp);
         }
-        Engine.DrawString(maxScore.ToString(), scoreVec, Color.Purple, font);
+        Engine.DrawString(maxHeight.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
@@ -187,12 +187,12 @@ class Game
                 if (hitting(charLocation, trampolines))
                 {
                     x = charLocation.Y - 20;
-                    score += 20;
+                    height += 20;
                 }
                 else
                 {
                     x = charLocation.Y - 5;
-                    score += 5;
+                    height += 5;
                 }
                 charLocation.Y = (float)x;
                 System.Threading.Thread.Sleep(10);
