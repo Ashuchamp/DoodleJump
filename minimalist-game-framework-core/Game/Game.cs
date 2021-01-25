@@ -397,10 +397,6 @@ class Game
         {
             if (platform.hittingPlatform(charLocation))
             {
-                if(platform.timesTouchedPlatform() == 1)
-                {
-                    score++;
-                }
                 return true;
             }
         }
