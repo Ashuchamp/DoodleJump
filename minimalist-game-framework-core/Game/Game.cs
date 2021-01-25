@@ -53,9 +53,11 @@ class Game
 
     }
 
-    int score = 0;
+    int maxHeight = 0;
+    int height = 0;
     int count = 0;
     Boolean jump = false;
+    Boolean alreadyUpdatedScoreBoard = false;
 
     Boolean compiled = false;
     Boolean movingDown = false;
@@ -69,17 +71,28 @@ class Game
         //platforms.Add(plat1);
         //platforms.Add(plat2);
         //platforms.Add(plat3);
-
-        if (isGameOver(charLocation))
-        {
-            sb.modifyScoreBoard(score);
-        }
-
         Random random = new System.Random();
 
         if (!jump && !movingDown)
         {
-            charLocation.Y += 5;
+            if (isGameOver(charLocation))
+            {
+                if (!alreadyUpdatedScoreBoard)
+                {
+                    sb.modifyScoreBoard(maxHeight);
+                    alreadyUpdatedScoreBoard = true;
+                }
+            }
+            else
+            {
+                charLocation.Y += 5;
+                height -= 5;
+            }
+        }
+
+        if (height > maxHeight)
+        {
+            maxHeight = height;
         }
         //charLocation.Y += 5;
 
@@ -115,11 +128,11 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
-        foreach(Vector2 tramp in trampolines)
+        foreach (Vector2 tramp in trampolines)
         {
             Engine.DrawTexture(trampolineTex, tramp);
         }
-        Engine.DrawString(score.ToString(), scoreVec, Color.Purple, font);
+        Engine.DrawString(maxHeight.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
@@ -130,7 +143,7 @@ class Game
         bulletStuff();
         //}
 
-        
+
         //breakPlatform();
 
     }
@@ -174,10 +187,12 @@ class Game
                 if (hitting(charLocation, trampolines))
                 {
                     x = charLocation.Y - 20;
+                    height += 20;
                 }
                 else
                 {
                     x = charLocation.Y - 5;
+                    height += 5;
                 }
                 charLocation.Y = (float)x;
                 System.Threading.Thread.Sleep(10);
@@ -367,7 +382,7 @@ class Game
                 enemies.Add(enemyTemp);
             }
 
-            if(trampolineProb < 10)
+            if (trampolineProb < 10)
             {
                 Vector2 trampolineTemp = new Vector2(newX, newY - 40);
                 trampolines.Add(trampolineTemp);
@@ -375,16 +390,13 @@ class Game
         }
     }
 
+    
     public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
     {
         foreach (Platform platform in platforms)
         {
             if (platform.hittingPlatform(charLocation))
             {
-                if(platform.timesTouchedPlatform() == 1)
-                {
-                    score++;
-                }
                 return true;
             }
         }
