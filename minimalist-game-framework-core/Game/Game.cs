@@ -392,6 +392,7 @@ class Game
         }
     }
 
+    //
     public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
     {
         foreach (Platform platform in platforms)
