@@ -22,7 +22,7 @@ internal class ScoreBoard
         }
         Console.WriteLine();
     }
-
+  
     //No priority queues in C#, so array had to be used
     public void modifyScoreBoard(int score)
     {
@@ -49,7 +49,6 @@ internal class ScoreBoard
         {
             output[i] = (i + 1) + " " + scores[i];
         }
-
         foreach (int score in scores)
         {
             File.WriteAllLines(path, output);
