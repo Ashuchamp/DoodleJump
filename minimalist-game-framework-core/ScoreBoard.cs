@@ -6,11 +6,14 @@ using System.IO;
 internal class ScoreBoard
 {
     int[] scores;
+    String path;
     public ScoreBoard()
     {
         scores = new int[10];
-        String[] scoreLines = System.IO.File.ReadAllLines(@"C:\Users\tomat\OneDrive\Documents\GitHub\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Docs\scores.txt");
-        foreach(String str in scoreLines)
+        String fileName = "scores.txt";
+        path = Path.Combine(Environment.CurrentDirectory, @"C\", fileName);
+        String[] scoreLines = System.IO.File.ReadAllLines(path);
+        foreach (String str in scoreLines)
         {
             String[] lineArr = str.Split();
             int ranking = int.Parse(lineArr[0]);
@@ -42,12 +45,11 @@ internal class ScoreBoard
     public void outputScoreBoard()
     {
         String[] output = new String[10];
-        for(int i = 0; i < scores.Length; i++)
+        for (int i = 0; i < scores.Length; i++)
         {
-            output[i] = (i + 1) + " " + scores[i]; 
+            output[i] = (i + 1) + " " + scores[i];
         }
-        String path = @"..\Docs\scores.txt";
-        foreach(int score in scores)
+        foreach (int score in scores)
         {
             File.WriteAllLines(path, output);
         }
