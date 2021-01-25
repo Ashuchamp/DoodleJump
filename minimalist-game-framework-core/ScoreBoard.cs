@@ -6,11 +6,12 @@ using System.IO;
 internal class ScoreBoard
 {
     int[] scores;
+    String path;
     public ScoreBoard()
     {
         scores = new int[10];
         String fileName = "scores.txt";
-        String path = Path.Combine(Environment.CurrentDirectory, @"C\", fileName);
+        path = Path.Combine(Environment.CurrentDirectory, @"C\", fileName);
         String[] scoreLines = System.IO.File.ReadAllLines(path);
         foreach (String str in scoreLines)
         {
@@ -21,18 +22,18 @@ internal class ScoreBoard
         }
         Console.WriteLine();
     }
-    
+
     //No priority queues in C#, so array had to be used
     public void modifyScoreBoard(int score)
     {
-        if(score > scores[scores.Length-1])
+        if (score > scores[scores.Length - 1])
         {
             int i = 0;
-            while(i < scores.Length && score < scores[i])
+            while (i < scores.Length && score < scores[i])
             {
                 i++;
             }
-            for(int j = scores.Length-1; j > i; j--)
+            for (int j = scores.Length - 1; j > i; j--)
             {
                 scores[j] = scores[j - 1];
             }
@@ -44,12 +45,12 @@ internal class ScoreBoard
     public void outputScoreBoard()
     {
         String[] output = new String[10];
-        for(int i = 0; i < scores.Length; i++)
+        for (int i = 0; i < scores.Length; i++)
         {
-            output[i] = (i + 1) + " " + scores[i]; 
+            output[i] = (i + 1) + " " + scores[i];
         }
-        String path = @"C:\Users\brian\source\repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Docs\scores.txt";
-        foreach(int score in scores)
+
+        foreach (int score in scores)
         {
             File.WriteAllLines(path, output);
         }
