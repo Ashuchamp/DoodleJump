@@ -25,4 +25,8 @@ class Powerup
     {
         return powerupLocation;
     }
+    public void setLocation(Vector2 newLoc)
+    {
+        powerupLocation = newLoc;
+    }
 }

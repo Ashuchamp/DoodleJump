@@ -65,6 +65,7 @@ class Game
     int lastPlatY = 470;
 
     ScoreBoard sb = new ScoreBoard();
+    Character main = new Character();
 
     public void Update()
     {
@@ -128,21 +129,28 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
-        foreach (Vector2 tramp in trampolines)
+        foreach (Powerup tramp in trampolines)
         {
-            Engine.DrawTexture(trampolineTex, tramp);
+            Engine.DrawTexture(trampolineTex, tramp.getLocation());
         }
         Engine.DrawString(maxHeight.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
         makePlatforms();
-        charActions();
-
-        jumping();
+        main.respondToKey(Engine.GetKeyHeld());
+        //charActions();
+        main.jumping();
+        //jumping();
         bulletStuff();
         //}
-
+        foreach (Powerup tramp in trampolines)
+        {
+            if (Math.Abs(charLocation.X - tramp.getLocation().X) <= 5 && Math.Abs(charLocation.Y - tramp.getLocation().Y) <= 5)
+            {
+                main.activatePowerup(tramp.getName());
+            }
+        }
 
         //breakPlatform();
 
@@ -175,7 +183,7 @@ class Game
         }
     }
 
-    public void jumping()
+    /*public void jumping()
     {
         if (jump || hittingPlat(charLocation, platforms))
         {
@@ -268,7 +276,7 @@ class Game
             temp.X = temp.X + 15;
             bullets.Add(temp);
         }
-    }
+    }*/
 
     public void breakPlatform()
     {
@@ -353,9 +361,9 @@ class Game
 
         for (int i = 0; i < trampolines.Count; i++)
         {
-            Vector2 temp = (Vector2)trampolines[i];
+            Vector2 temp = trampolines[i].getLocation();
             temp.Y = temp.Y + 10;
-            trampolines[i] = temp;
+            trampolines[i].setLocation() = temp;
         }
     }
 
@@ -384,8 +392,8 @@ class Game
 
             if (trampolineProb < 10)
             {
-                Vector2 trampolineTemp = new Vector2(newX, newY - 40);
-                trampolines.Add(trampolineTemp);
+                Powerup trampoline = new Powerup("trampoline", new Vector2(newX, newY - 40));
+                trampolines.Add(trampoline);
             }
         }
     }
@@ -408,7 +416,7 @@ class Game
     {
         foreach (Vector2 platform in platforms)
         {
-            if (Math.Abs(charLocation.X - platform.X) <= 40 && Math.Abs(charLocation.Y - platform.Y) <= 29)
+            if (Math.Abs(charLocation.X - platform.X) <= 5 && Math.Abs(charLocation.Y - platform.Y) <= 5)
             {
                 return true;
             }

@@ -26,9 +26,9 @@ class Character
         powerupActivated = false;
     }
 
-    public void respondToKey()
+    public void respondToKey(Key keyName)
     {
-        if (Engine.GetKeyHeld(Key.A)) // && charLocation.X > 0)
+        if (keyName == 'A') // && charLocation.X > 0)
         {
             charTexture = Engine.LoadTexture("charL.png");
 
@@ -38,7 +38,7 @@ class Character
             }
             charLocation.X = charLocation.X - 5;
         }
-        if (Engine.GetKeyHeld(Key.D)) //&& charLocation.X < 290)
+        if (keyName == "D") //&& charLocation.X < 290)
         {
             charTexture = Engine.LoadTexture("charR.png");
 
@@ -49,15 +49,15 @@ class Character
             charLocation.X = charLocation.X + 5;
             Console.WriteLine("D pressed");
         }
-        if (Engine.GetKeyHeld(Key.S))
+        /*if (keyName == "S")
         {
             charLocation.Y = charLocation.Y + 5;
         }
-        if (Engine.GetKeyHeld(Key.W))
+        if (keyName == "W")
         {
             charLocation.Y = charLocation.Y - 10;
-        }
-        if (Engine.GetKeyDown(Key.Space))
+        }*/
+        if (keyName == "Space")
         {
             charTexture = Engine.LoadTexture("shoot.png");
             Vector2 temp = new Vector2();
@@ -102,7 +102,7 @@ class Character
         switch (powerUpName)
         {
             case "trampoline":
-                changeY = 5;
+                changeY = 1000;
                 break;
             case "helicopterCap":
                 changeY = 12;
@@ -121,5 +121,57 @@ class Character
         }
         //powerups.RemoveAt(0);
         powerupActivated = false;
+    }
+
+    public void jumping()
+    {
+        if (jump || hittingPlat(charLocation, platforms))
+        {
+            jump = true;
+            if (count < 25 && jump == true)
+            {
+                count++;
+                double x;
+                if (hitting(charLocation, trampolines))
+                {
+                    x = charLocation.Y - 20;
+                    height += 20;
+                }
+                else
+                {
+                    x = charLocation.Y - 5;
+                    height += 5;
+                }
+                charLocation.Y = (float)x;
+                System.Threading.Thread.Sleep(10);
+            }
+            else
+            {
+                jump = false;
+                count = 0;
+                //
+            }
+        }
+        if (charLocation.Y < 100)
+        {
+            //if(downCount < 25)
+            //{
+            movePlatsDown();
+            if (jump)
+            {
+                charLocation.Y += 5;
+            }
+            else
+            {
+                charLocation.Y += 15;
+            }
+            downCount++;
+            movingDown = true;
+        }
+        else
+        {
+            movingDown = false;
+            downCount = 0;
+        }
     }
 }
