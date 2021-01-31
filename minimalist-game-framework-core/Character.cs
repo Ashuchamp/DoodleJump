@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Powerup.cs;
 
 class Character
 {
@@ -71,7 +70,7 @@ class Character
     public void addPowerups(Powerup powerup)
     {
         //get location from char and location of powerups
-        if (charLocation.X == powerup.X && charLocation.Y == powerup.Y)
+        if (charLocation.X == powerup.getLocation().X && charLocation.Y == powerup.getLocation().Y)
         {
             //if match then add powerup to arraylist
             //powerups.Add(powerup);
