@@ -65,7 +65,6 @@ class Game
     int lastPlatY = 470;
 
     ScoreBoard sb = new ScoreBoard();
-    Character main = new Character();
 
     public void Update()
     {
@@ -129,28 +128,21 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
-        foreach (Powerup tramp in trampolines)
+        foreach (Vector2 tramp in trampolines)
         {
-            Engine.DrawTexture(trampolineTex, tramp.getLocation());
+            Engine.DrawTexture(trampolineTex, tramp);
         }
         Engine.DrawString(maxHeight.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
         makePlatforms();
-        main.respondToKey(Engine.GetKeyHeld());
-        //charActions();
+        charActions();
+
         jumping();
-        //jumping();
         bulletStuff();
         //}
-        foreach (Powerup tramp in trampolines)
-        {
-            if (Math.Abs(charLocation.X - tramp.getLocation().X) <= 5 && Math.Abs(charLocation.Y - tramp.getLocation().Y) <= 5)
-            {
-                main.activatePowerup(tramp.getName());
-            }
-        }
+
 
         //breakPlatform();
 
@@ -183,55 +175,55 @@ class Game
         }
     }
 
-    /*public void jumping()
+    public void jumping()
     {
-        if (jump || hittingplat(charlocation, platforms))
+        if (jump || hittingPlat(charLocation, platforms))
         {
             jump = true;
             if (count < 25 && jump == true)
             {
                 count++;
                 double x;
-                if (hitting(charlocation, trampolines))
+                if (hitting(charLocation, trampolines))
                 {
-                    x = charlocation.y - 20;
+                    x = charLocation.Y - 20;
                     height += 20;
                 }
                 else
                 {
-                    x = charlocation.y - 5;
+                    x = charLocation.Y - 5;
                     height += 5;
                 }
-                charlocation.y = (float)x;
-                system.threading.thread.sleep(10);
+                charLocation.Y = (float)x;
+                System.Threading.Thread.Sleep(10);
             }
             else
             {
                 jump = false;
                 count = 0;
-                
+                //
             }
         }
-        if (charlocation.y < 100)
+        if (charLocation.Y < 100)
         {
-            if(downcount < 25)
-            {
-            moveplatsdown();
+            //if(downCount < 25)
+            //{
+            movePlatsDown();
             if (jump)
             {
-                charlocation.y += 5;
+                charLocation.Y += 5;
             }
             else
             {
-                charlocation.y += 15;
+                charLocation.Y += 15;
             }
-            downcount++;
-            movingdown = true;
+            downCount++;
+            movingDown = true;
         }
         else
         {
-            movingdown = false;
-            downcount = 0;
+            movingDown = false;
+            downCount = 0;
         }
     }
 
@@ -276,7 +268,7 @@ class Game
             temp.X = temp.X + 15;
             bullets.Add(temp);
         }
-    }*/
+    }
 
     public void breakPlatform()
     {
@@ -284,7 +276,7 @@ class Game
         for (int i = 0; i < brokenPlatforms.Count; i++)
         {
             Platform platform = platforms[i];
-            if ((Math.Abs(charLocation.X - platform.getVector().X) <= 40 && Math.Abs(charLocation.Y - platform.getVector().Y) <= 29) 
+            if ((Math.Abs(charLocation.X - platform.getVector().X) <= 40 && Math.Abs(charLocation.Y - platform.getVector().Y) <= 29)
                 && random.Next(0, 100) > 80)
             {
                 brokenPlatforms.RemoveAt(i);
@@ -348,8 +340,8 @@ class Game
         {
             Platform plat = platforms[i];
             Vector2 temp = plat.getVector();
-            temp.Y = temp.Y + 10;           
-            platforms[i].modifyVector(temp);         
+            temp.Y = temp.Y + 10;
+            platforms[i].modifyVector(temp);
         }
 
         for (int i = 0; i < enemies.Count; i++)
@@ -361,9 +353,9 @@ class Game
 
         for (int i = 0; i < trampolines.Count; i++)
         {
-            Vector2 temp = trampolines[i].getLocation();
+            Vector2 temp = (Vector2)trampolines[i];
             temp.Y = temp.Y + 10;
-            trampolines[i].setLocation() = temp;
+            trampolines[i] = temp;
         }
     }
 
@@ -392,13 +384,13 @@ class Game
 
             if (trampolineProb < 10)
             {
-                Powerup trampoline = new Powerup("trampoline", new Vector2(newX, newY - 40));
-                trampolines.Add(trampoline);
+                Vector2 trampolineTemp = new Vector2(newX, newY - 40);
+                trampolines.Add(trampolineTemp);
             }
         }
     }
 
-    
+
     public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
     {
         foreach (Platform platform in platforms)
@@ -416,7 +408,7 @@ class Game
     {
         foreach (Vector2 platform in platforms)
         {
-            if (Math.Abs(charLocation.X - platform.X) <= 5 && Math.Abs(charLocation.Y - platform.Y) <= 5)
+            if (Math.Abs(charLocation.X - platform.X) <= 40 && Math.Abs(charLocation.Y - platform.Y) <= 29)
             {
                 return true;
             }

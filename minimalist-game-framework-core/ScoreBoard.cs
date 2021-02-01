@@ -22,7 +22,7 @@ internal class ScoreBoard
         }
         Console.WriteLine();
     }
-  
+
     //No priority queues in C#, so array had to be used
     public void modifyScoreBoard(int score)
     {

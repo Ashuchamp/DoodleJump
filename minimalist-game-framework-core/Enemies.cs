@@ -31,11 +31,11 @@ internal class Enemies
 
     public void drawEnemy(String kind)
     {
-        if(kind == "one")
+        if (kind == "one")
         {
             Engine.DrawTexture(enemy1, location);
         }
-        else if(kind == "two")
+        else if (kind == "two")
         {
             Engine.DrawTexture(enemy2, location);
         }
@@ -44,11 +44,11 @@ internal class Enemies
     public void hit(String kind)
     {
         timesHit++;
-        if(kind == "one")
+        if (kind == "one")
         {
             //kill enemy
         }
-        else if(kind == "two")
+        else if (kind == "two")
         {
             //change texturee
         }
