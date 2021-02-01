@@ -140,7 +140,7 @@ class Game
         makePlatforms();
         main.respondToKey(Engine.GetKeyHeld());
         //charActions();
-        main.jumping();
+        jumping();
         //jumping();
         bulletStuff();
         //}
@@ -185,53 +185,53 @@ class Game
 
     /*public void jumping()
     {
-        if (jump || hittingPlat(charLocation, platforms))
+        if (jump || hittingplat(charlocation, platforms))
         {
             jump = true;
             if (count < 25 && jump == true)
             {
                 count++;
                 double x;
-                if (hitting(charLocation, trampolines))
+                if (hitting(charlocation, trampolines))
                 {
-                    x = charLocation.Y - 20;
+                    x = charlocation.y - 20;
                     height += 20;
                 }
                 else
                 {
-                    x = charLocation.Y - 5;
+                    x = charlocation.y - 5;
                     height += 5;
                 }
-                charLocation.Y = (float)x;
-                System.Threading.Thread.Sleep(10);
+                charlocation.y = (float)x;
+                system.threading.thread.sleep(10);
             }
             else
             {
                 jump = false;
                 count = 0;
-                //
+                
             }
         }
-        if (charLocation.Y < 100)
+        if (charlocation.y < 100)
         {
-            //if(downCount < 25)
-            //{
-            movePlatsDown();
+            if(downcount < 25)
+            {
+            moveplatsdown();
             if (jump)
             {
-                charLocation.Y += 5;
+                charlocation.y += 5;
             }
             else
             {
-                charLocation.Y += 15;
+                charlocation.y += 15;
             }
-            downCount++;
-            movingDown = true;
+            downcount++;
+            movingdown = true;
         }
         else
         {
-            movingDown = false;
-            downCount = 0;
+            movingdown = false;
+            downcount = 0;
         }
     }
 
