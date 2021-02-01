@@ -27,7 +27,7 @@ class Character
 
     public void respondToKey(Key keyName)
     {
-        if (keyName == 'A') // && charLocation.X > 0)
+        if (keyName == Key.A) // && charLocation.X > 0)
         {
             charTexture = Engine.LoadTexture("charL.png");
 
@@ -37,7 +37,7 @@ class Character
             }
             charLocation.X = charLocation.X - 5;
         }
-        if (keyName == "D") //&& charLocation.X < 290)
+        if (keyName == Key.A) //&& charLocation.X < 290)
         {
             charTexture = Engine.LoadTexture("charR.png");
 
@@ -56,7 +56,7 @@ class Character
         {
             charLocation.Y = charLocation.Y - 10;
         }*/
-        if (keyName == "Space")
+        if (keyName == Key.Space)
         {
             charTexture = Engine.LoadTexture("shoot.png");
             Vector2 temp = new Vector2();
@@ -122,55 +122,29 @@ class Character
         powerupActivated = false;
     }
 
-    public void jumping()
+    public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
     {
-        if (jump || hittingPlat(charLocation, platforms))
+        foreach (Platform platform in platforms)
         {
-            jump = true;
-            if (count < 25 && jump == true)
+            if (platform.hittingPlatform(charLocation))
             {
-                count++;
-                double x;
-                if (hitting(charLocation, trampolines))
-                {
-                    x = charLocation.Y - 20;
-                    height += 20;
-                }
-                else
-                {
-                    x = charLocation.Y - 5;
-                    height += 5;
-                }
-                charLocation.Y = (float)x;
-                System.Threading.Thread.Sleep(10);
-            }
-            else
-            {
-                jump = false;
-                count = 0;
-                //
+                return true;
             }
         }
-        if (charLocation.Y < 100)
+
+        return false;
+    }
+
+    public Boolean hitting(Vector2 charLocation, ArrayList platforms)
+    {
+        foreach (Vector2 platform in platforms)
         {
-            //if(downCount < 25)
-            //{
-            movePlatsDown();
-            if (jump)
+            if (Math.Abs(charLocation.X - platform.X) <= 5 && Math.Abs(charLocation.Y - platform.Y) <= 5)
             {
-                charLocation.Y += 5;
+                return true;
             }
-            else
-            {
-                charLocation.Y += 15;
-            }
-            downCount++;
-            movingDown = true;
         }
-        else
-        {
-            movingDown = false;
-            downCount = 0;
-        }
+
+        return false;
     }
 }
