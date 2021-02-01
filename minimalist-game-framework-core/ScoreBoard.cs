@@ -5,7 +5,7 @@ using System.IO;
 
 internal class ScoreBoard
 {
-    //
+    
     int[] scores;
     String path;
     public ScoreBoard()
