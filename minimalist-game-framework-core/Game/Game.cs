@@ -53,11 +53,9 @@ class Game
 
     }
 
-    int maxHeight = 0;
-    int height = 0;
+    int score = 0;
     int count = 0;
     Boolean jump = false;
-    Boolean alreadyUpdatedScoreBoard = false;
 
     Boolean compiled = false;
     Boolean movingDown = false;
@@ -72,28 +70,17 @@ class Game
         //platforms.Add(plat1);
         //platforms.Add(plat2);
         //platforms.Add(plat3);
+
+        if (isGameOver(charLocation))
+        {
+            sb.modifyScoreBoard(score);
+        }
+
         Random random = new System.Random();
 
         if (!jump && !movingDown)
         {
-            if (isGameOver(charLocation))
-            {
-                if (!alreadyUpdatedScoreBoard)
-                {
-                    sb.modifyScoreBoard(maxHeight);
-                    alreadyUpdatedScoreBoard = true;
-                }
-            }
-            else
-            {
-                charLocation.Y += 5;
-                height -= 5;
-            }
-        }
-
-        if (height > maxHeight)
-        {
-            maxHeight = height;
+            charLocation.Y += 5;
         }
         //charLocation.Y += 5;
 
@@ -129,11 +116,15 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
+<<<<<<< HEAD
         foreach (Powerup tramp in trampolines)
+=======
+        foreach(Vector2 tramp in trampolines)
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
         {
             Engine.DrawTexture(trampolineTex, tramp.getLocation());
         }
-        Engine.DrawString(maxHeight.ToString(), scoreVec, Color.Purple, font);
+        Engine.DrawString(score.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
@@ -144,6 +135,7 @@ class Game
         //jumping();
         bulletStuff();
         //}
+<<<<<<< HEAD
         foreach (Powerup tramp in trampolines)
         {
             if (Math.Abs(charLocation.X - tramp.getLocation().X) <= 5 && Math.Abs(charLocation.Y - tramp.getLocation().Y) <= 5)
@@ -152,6 +144,10 @@ class Game
             }
         }
 
+=======
+
+        
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
         //breakPlatform();
 
     }
@@ -194,6 +190,7 @@ class Game
                 double x;
                 if (hitting(charlocation, trampolines))
                 {
+<<<<<<< HEAD
                     x = charlocation.y - 20;
                     height += 20;
                 }
@@ -201,6 +198,13 @@ class Game
                 {
                     x = charlocation.y - 5;
                     height += 5;
+=======
+                    x = charLocation.Y - 20;
+                }
+                else
+                {
+                    x = charLocation.Y - 5;
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
                 }
                 charlocation.y = (float)x;
                 system.threading.thread.sleep(10);
@@ -390,7 +394,7 @@ class Game
                 enemies.Add(enemyTemp);
             }
 
-            if (trampolineProb < 10)
+            if(trampolineProb < 10)
             {
                 Powerup trampoline = new Powerup("trampoline", new Vector2(newX, newY - 40));
                 trampolines.Add(trampoline);
@@ -398,7 +402,6 @@ class Game
         }
     }
 
-    
     public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
     {
         foreach (Platform platform in platforms)
