@@ -52,8 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
-    <Compile Include="Enemies.cs" />
     <Compile Include="Engine\Audio.cs" />
     <Compile Include="Engine\Utility\Bounds2.cs" />
     <Compile Include="Engine\Utility\Color.cs" />
@@ -67,9 +65,6 @@
     <Compile Include="Engine\Utility\Vector2.cs" />
     <Compile Include="Engine\SDL2\SDL2_mixer.cs" />
     <Compile Include="Engine\SDL2\SDL2_ttf.cs" />
-    <Compile Include="Platform.cs" />
-    <Compile Include="Powerup.cs" />
-    <Compile Include="ScoreBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
