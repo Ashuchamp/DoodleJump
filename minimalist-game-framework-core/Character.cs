@@ -25,49 +25,112 @@ class Character
         powerupActivated = false;
     }
 
-    public void respondToKey(Key keyName)
+    public void respondToKey()
     {
-        if (keyName == Key.A) // && charLocation.X > 0)
-        {
-            charTexture = Engine.LoadTexture("charL.png");
 
-            if (charLocation.X < 0)
-            {
-                charLocation.X = 300;
-            }
-            charLocation.X = charLocation.X - 5;
-        }
-        if (keyName == Key.A) //&& charLocation.X < 290)
-        {
-            charTexture = Engine.LoadTexture("charR.png");
-
-            if (charLocation.X > 300)
-            {
-                charLocation.X = 0;
-            }
-            charLocation.X = charLocation.X + 5;
-            Console.WriteLine("D pressed"); 
-        }
-        /*if (keyName == "S")
-        {
-            charLocation.Y = charLocation.Y + 5;
-        }
-        if (keyName == "W")
-        {
-            charLocation.Y = charLocation.Y - 10;
-        }*/
-        if (keyName == Key.Space)
-        {
-            charTexture = Engine.LoadTexture("shoot.png");
-            Vector2 temp = new Vector2();
-            temp = charLocation;
-            temp.Y = temp.Y - 2;
-            temp.X = temp.X + 15;
-            //bullets.Add(temp);
-        }
+        if (Engine.GetKeyDown(Key.A)) // && charLocation.X > 0)
+                                      {
+                                          charTexture = Engine.LoadTexture("charL.png");
+                              
+                                          if (charLocation.X < 0)
+                                          {
+                                              charLocation.X = 300;
+                                          }
+                                          charLocation.X = charLocation.X - 5;
+                                      }
+           // Engine.GetKeyDown()
+//        if (keyName == Key.A) // && charLocation.X > 0)
+//        {
+//            charTexture = Engine.LoadTexture("charL.png");
+//
+//            if (charLocation.X < 0)
+//            {
+//                charLocation.X = 300;
+//            }
+//            charLocation.X = charLocation.X - 5;
+//        }
+//        if (keyName == Key.A) //&& charLocation.X < 290)
+//        {
+//            charTexture = Engine.LoadTexture("charR.png");
+//
+//            if (charLocation.X > 300)
+//            {
+//                charLocation.X = 0;
+//            }
+//            charLocation.X = charLocation.X + 5;
+//            Console.WriteLine("D pressed");
+//        }
+/*if (keyName == "S")
+///       {
+//           charLocation.Y = charLocation.Y + 5;
+//       }
+///        if (keyName == "W")
+//        {
+//           charLocation.Y = charLocation.Y - 10;
+//        }*/
+//        if (keyName == Key.Space)
+//        {
+//            charTexture = Engine.LoadTexture("shoot.png");
+//            Vector2 temp = new Vector2();
+//            temp = charLocation;
+//            temp.Y = temp.Y - 2;
+//           temp.X = temp.X + 15;
+///            //bullets.Add(temp);
+        //        }
     }
+    public void jumping()
+    {
+        if (jump || hittingplat(charLocation, platforms))
+        {
+            jump = true;
+            if (count < 25 && jump == true)
+            {
+                count++;
+                double x;
+                if (hitting(charLocation, trampolines))
+                {
+                    x = charLocation.y - 20;
+                    height += 20;
+                }
+                else
+                {
+                    x = charLocation.y - 5;
+                    height += 5;
+                }
+                charLocation.y = (float)x;
+                system.threading.thread.sleep(10);
+            }
+            else
+            {
+                jump = false;
+                count = 0;
 
-    public void addPowerups(Powerup powerup)
+            }
+        }
+        if (charLocation.y < 100)
+        {
+            if (downcount < 25)
+            {
+                moveplatsdown();
+                if (jump)
+                {
+                    charLocation.y += 5;
+                }
+                else
+                {
+                    charLocation.y += 15;
+                }
+                downcount++;
+                movingdown = true;
+            }
+            else
+            {
+                movingdown = false;
+                downcount = 0;
+            }
+        }
+
+        public void addPowerups(Powerup powerup)
     {
         //get location from char and location of powerups
         if (charLocation.X == powerup.getLocation().X && charLocation.Y == powerup.getLocation().Y)
@@ -83,7 +146,7 @@ class Character
             else
             {
                 //callback function?
-                while(powerupActivated)
+                while (powerupActivated)
                 {
                     Console.WriteLine("Powerup active, so can't activate new powerup.");
                 }
