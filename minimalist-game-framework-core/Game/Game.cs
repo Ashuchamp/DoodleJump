@@ -117,7 +117,11 @@ class Game
             Engine.DrawTexture(enemyPic, enemy);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         foreach (Powerup tramp in trampolines)
+=======
+        foreach(Vector2 tramp in trampolines)
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
 =======
         foreach(Vector2 tramp in trampolines)
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
@@ -144,8 +148,12 @@ class Game
             }
         }
 
+<<<<<<< HEAD
 =======
 
+        
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
+=======
         
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
         //breakPlatform();
@@ -191,6 +199,7 @@ class Game
                 if (hitting(charlocation, trampolines))
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     x = charlocation.y - 20;
                     height += 20;
                 }
@@ -200,6 +209,13 @@ class Game
                     height += 5;
 =======
                     x = charLocation.Y - 20;
+=======
+                    x = charLocation.Y - 20;
+                }
+                else
+                {
+                    x = charLocation.Y - 5;
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
                 }
                 else
                 {
