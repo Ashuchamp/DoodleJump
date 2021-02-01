@@ -46,7 +46,7 @@ class Character
                 charLocation.X = 0;
             }
             charLocation.X = charLocation.X + 5;
-            Console.WriteLine("D pressed");
+            Console.WriteLine("D pressed"); 
         }
         /*if (keyName == "S")
         {
