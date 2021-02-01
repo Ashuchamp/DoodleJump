@@ -55,8 +55,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Character.cs" />
     <Compile Include="Enemies.cs" />
+=======
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
 =======
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
 =======

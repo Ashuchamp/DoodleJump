@@ -119,7 +119,11 @@ class Game
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         foreach (Powerup tramp in trampolines)
+=======
+        foreach(Vector2 tramp in trampolines)
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
 =======
         foreach(Vector2 tramp in trampolines)
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
@@ -154,8 +158,12 @@ class Game
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+        
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
+=======
         
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
 =======
@@ -209,6 +217,7 @@ class Game
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     x = charlocation.y - 20;
                     height += 20;
                 }
@@ -227,6 +236,13 @@ class Game
                 {
                     x = charLocation.Y - 5;
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
+                }
+                else
+                {
+                    x = charLocation.Y - 5;
+>>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
+=======
+                    x = charLocation.Y - 20;
                 }
                 else
                 {
