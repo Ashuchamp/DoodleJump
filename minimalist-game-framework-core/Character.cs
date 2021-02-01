@@ -25,9 +25,13 @@ class Character
         powerupActivated = false;
     }
 
-    public void respondToKey(Key keyName)
+    public void respondToKey()
     {
+<<<<<<< HEAD
         if (keyName == Key.A) // && charLocation.X > 0)
+=======
+        if (Engine.GetKeyHeld(Key.A)) // && charLocation.X > 0)
+>>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
         {
             charTexture = Engine.LoadTexture("charL.png");
 
@@ -37,7 +41,11 @@ class Character
             }
             charLocation.X = charLocation.X - 5;
         }
+<<<<<<< HEAD
         if (keyName == Key.A) //&& charLocation.X < 290)
+=======
+        if (Engine.GetKeyHeld(Key.D)) //&& charLocation.X < 290)
+>>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
         {
             charTexture = Engine.LoadTexture("charR.png");
 
@@ -48,15 +56,20 @@ class Character
             charLocation.X = charLocation.X + 5;
             Console.WriteLine("D pressed"); 
         }
-        /*if (keyName == "S")
+        if (Engine.GetKeyHeld(Key.S))
         {
             charLocation.Y = charLocation.Y + 5;
         }
-        if (keyName == "W")
+        if (Engine.GetKeyHeld(Key.W))
         {
             charLocation.Y = charLocation.Y - 10;
+<<<<<<< HEAD
         }*/
         if (keyName == Key.Space)
+=======
+        }
+        if (Engine.GetKeyDown(Key.Space))
+>>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
         {
             charTexture = Engine.LoadTexture("shoot.png");
             Vector2 temp = new Vector2();
@@ -101,7 +114,7 @@ class Character
         switch (powerUpName)
         {
             case "trampoline":
-                changeY = 1000;
+                changeY = 5;
                 break;
             case "helicopterCap":
                 changeY = 12;
@@ -121,6 +134,7 @@ class Character
         //powerups.RemoveAt(0);
         powerupActivated = false;
     }
+<<<<<<< HEAD
 
     public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
     {
@@ -147,4 +161,6 @@ class Character
 
         return false;
     }
+=======
+>>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
 }

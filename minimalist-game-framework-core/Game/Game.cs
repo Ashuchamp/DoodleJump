@@ -63,7 +63,6 @@ class Game
     int lastPlatY = 470;
 
     ScoreBoard sb = new ScoreBoard();
-    Character main = new Character();
 
     public void Update()
     {
@@ -120,6 +119,7 @@ class Game
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         foreach (Powerup tramp in trampolines)
 =======
         foreach(Vector2 tramp in trampolines)
@@ -133,14 +133,18 @@ class Game
 =======
         foreach(Vector2 tramp in trampolines)
 >>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
+=======
+        foreach (Vector2 tramp in trampolines)
+>>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
         {
-            Engine.DrawTexture(trampolineTex, tramp.getLocation());
+            Engine.DrawTexture(trampolineTex, tramp);
         }
         Engine.DrawString(score.ToString(), scoreVec, Color.Purple, font);
 
         time++;
 
         makePlatforms();
+<<<<<<< HEAD
         main.respondToKey(Engine.GetKeyHeld());
         //charActions();
         jumping();
@@ -155,6 +159,14 @@ class Game
                 main.activatePowerup(tramp.getName());
             }
         }
+=======
+        charActions();
+
+        jumping();
+        bulletStuff();
+        //}
+
+>>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -203,7 +215,7 @@ class Game
         }
     }
 
-    /*public void jumping()
+    public void jumping()
     {
         if (jump || hittingplat(charlocation, platforms))
         {
@@ -328,7 +340,7 @@ class Game
             temp.X = temp.X + 15;
             bullets.Add(temp);
         }
-    }*/
+    }
 
     public void breakPlatform()
     {
@@ -413,9 +425,9 @@ class Game
 
         for (int i = 0; i < trampolines.Count; i++)
         {
-            Vector2 temp = trampolines[i].getLocation();
+            Vector2 temp = (Vector2)trampolines[i];
             temp.Y = temp.Y + 10;
-            trampolines[i].setLocation() = temp;
+            trampolines[i] = temp;
         }
     }
 
@@ -444,8 +456,8 @@ class Game
 
             if(trampolineProb < 10)
             {
-                Powerup trampoline = new Powerup("trampoline", new Vector2(newX, newY - 40));
-                trampolines.Add(trampoline);
+                Vector2 trampolineTemp = new Vector2(newX, newY - 40);
+                trampolines.Add(trampolineTemp);
             }
         }
     }
@@ -467,7 +479,7 @@ class Game
     {
         foreach (Vector2 platform in platforms)
         {
-            if (Math.Abs(charLocation.X - platform.X) <= 5 && Math.Abs(charLocation.Y - platform.Y) <= 5)
+            if (Math.Abs(charLocation.X - platform.X) <= 40 && Math.Abs(charLocation.Y - platform.Y) <= 29)
             {
                 return true;
             }
