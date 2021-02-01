@@ -9,6 +9,8 @@ class Game
 
     Texture charRight = Engine.LoadTexture("charR.png");
     readonly Texture charLeft = Engine.LoadTexture("charL.png");
+    readonly Texture Tplat1 = Engine.LoadTexture("plat.png");
+    readonly Texture customPlatT = Engine.LoadTexture("plat1.png");
     readonly Texture bulletPic = Engine.LoadTexture("bullet.png");
     readonly Texture enemyPic = Engine.LoadTexture("enemy.png");
     readonly Texture trampolineTex = Engine.LoadTexture("trampoline.png");
@@ -20,7 +22,7 @@ class Game
 
     Vector2 charLocation = new Vector2(145, 440);
     //Vector2 platLocation = new Vector2(100, 300);
-    List<Platform> platforms = new List<Platform>();
+    ArrayList platforms = new ArrayList();
     ArrayList trampolines = new ArrayList();
     ArrayList bullets = new ArrayList();
     ArrayList enemies = new ArrayList();
@@ -61,20 +63,11 @@ class Game
     Boolean movingDown = false;
     int downCount = 0;
     int lastPlatY = 470;
-
-    ScoreBoard sb = new ScoreBoard();
-
     public void Update()
     {
         //platforms.Add(plat1);
         //platforms.Add(plat2);
         //platforms.Add(plat3);
-
-        if (isGameOver(charLocation))
-        {
-            sb.modifyScoreBoard(score);
-        }
-
         Random random = new System.Random();
 
         if (!jump && !movingDown)
@@ -92,50 +85,28 @@ class Game
         if (!compiled)
         {
             lastPlatY = 470;
-            Vector2 platVec = new Vector2(140, 465);
-            Platform p = new Platform(platVec);
-            platforms.Add(p);
+            platforms.Add(new Vector2(140, 465));
             for (int i = 0; i < 10; i++)
             {
                 //int enemyProb = random.Next(0, 100);
                 lastPlatY = random.Next(lastPlatY - 125, lastPlatY - 50);
                 Vector2 temp = new Vector2(random.Next(0, 280), lastPlatY);
 
-                platforms.Add(new Platform(temp));
+                platforms.Add(temp);
                 //Engine.DrawTexture(customPlatT, temp);
             }
             compiled = true;
         }
 
-        foreach (Platform plat in platforms)
+        foreach (Vector2 plat in platforms)
         {
-            plat.drawPlatform("normal");
+            Engine.DrawTexture(customPlatT, plat);
         }
         foreach (Vector2 enemy in enemies)
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        foreach (Powerup tramp in trampolines)
-=======
         foreach(Vector2 tramp in trampolines)
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        foreach(Vector2 tramp in trampolines)
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        foreach(Vector2 tramp in trampolines)
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        foreach(Vector2 tramp in trampolines)
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        foreach (Vector2 tramp in trampolines)
->>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
         {
             Engine.DrawTexture(trampolineTex, tramp);
         }
@@ -144,46 +115,13 @@ class Game
         time++;
 
         makePlatforms();
-<<<<<<< HEAD
-        main.respondToKey(Engine.GetKeyHeld());
-        //charActions();
-        jumping();
-        //jumping();
-        bulletStuff();
-        //}
-<<<<<<< HEAD
-        foreach (Powerup tramp in trampolines)
-        {
-            if (Math.Abs(charLocation.X - tramp.getLocation().X) <= 5 && Math.Abs(charLocation.Y - tramp.getLocation().Y) <= 5)
-            {
-                main.activatePowerup(tramp.getName());
-            }
-        }
-=======
         charActions();
 
         jumping();
         bulletStuff();
         //}
 
->>>>>>> parent of f7a148b... Merge pull request #22 from TeslaSTEMCS/VG-CharacterBranch#2
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
         
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-        
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
         //breakPlatform();
 
     }
@@ -209,7 +147,8 @@ class Game
             if (random.Next(0, 100) < 80)
             {
                 brokenPlatforms.Add(platforms[i]);
-                Platform temp = (Platform)platforms[1];
+                Vector2 temp = new Vector2();
+                temp = (Vector2)platforms[1];
 
             }
         }
@@ -217,85 +156,52 @@ class Game
 
     public void jumping()
     {
-        if (jump || hittingplat(charlocation, platforms))
+        if (jump || hitting(charLocation, platforms))
         {
             jump = true;
             if (count < 25 && jump == true)
             {
+                score++;
                 count++;
                 double x;
-                if (hitting(charlocation, trampolines))
+                if (hitting(charLocation, trampolines))
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    x = charlocation.y - 20;
-                    height += 20;
-                }
-                else
-                {
-                    x = charlocation.y - 5;
-                    height += 5;
-=======
-                    x = charLocation.Y - 20;
-=======
-                    x = charLocation.Y - 20;
-=======
                     x = charLocation.Y - 20;
                 }
                 else
                 {
                     x = charLocation.Y - 5;
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
                 }
-                else
-                {
-                    x = charLocation.Y - 5;
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-=======
-                    x = charLocation.Y - 20;
-                }
-                else
-                {
-                    x = charLocation.Y - 5;
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-                }
-                else
-                {
-                    x = charLocation.Y - 5;
->>>>>>> parent of 0051085... Merge branch 'main' into BY-ScoreBoardBranch1
-                }
-                charlocation.y = (float)x;
-                system.threading.thread.sleep(10);
+                charLocation.Y = (float)x;
+                System.Threading.Thread.Sleep(10);
             }
             else
             {
                 jump = false;
                 count = 0;
-                
+                //
             }
         }
-        if (charlocation.y < 100)
+        if (charLocation.Y < 100)
         {
-            if(downcount < 25)
-            {
-            moveplatsdown();
+            //if(downCount < 25)
+            //{
+            movePlatsDown();
             if (jump)
             {
-                charlocation.y += 5;
+                charLocation.Y += 5;
             }
             else
             {
-                charlocation.y += 15;
+                charLocation.Y += 15;
             }
-            downcount++;
-            movingdown = true;
+            downCount++;
+            movingDown = true;
         }
         else
         {
-            movingdown = false;
-            downcount = 0;
+            movingDown = false;
+            downCount = 0;
         }
     }
 
@@ -347,9 +253,8 @@ class Game
         Random random = new System.Random();
         for (int i = 0; i < brokenPlatforms.Count; i++)
         {
-            Platform platform = platforms[i];
-            if ((Math.Abs(charLocation.X - platform.getVector().X) <= 40 && Math.Abs(charLocation.Y - platform.getVector().Y) <= 29) 
-                && random.Next(0, 100) > 80)
+            Vector2 platform = (Vector2)platforms[i];
+            if ((Math.Abs(charLocation.X - platform.X) <= 40 && Math.Abs(charLocation.Y - platform.Y) <= 29) && random.Next(0, 100) > 80)
             {
                 brokenPlatforms.RemoveAt(i);
                 return;
@@ -410,10 +315,9 @@ class Game
     {
         for (int i = 0; i < platforms.Count; i++)
         {
-            Platform plat = platforms[i];
-            Vector2 temp = plat.getVector();
-            temp.Y = temp.Y + 10;           
-            platforms[i].modifyVector(temp);         
+            Vector2 temp = (Vector2)platforms[i];
+            temp.Y = temp.Y + 10;
+            platforms[i] = temp;
         }
 
         for (int i = 0; i < enemies.Count; i++)
@@ -435,14 +339,14 @@ class Game
     {
         Random random = new System.Random();
 
-        Vector2 temp1 = platforms[0].getVector();
+        Vector2 temp1 = (Vector2)platforms[0];
         if (temp1.Y > 490)
         {
-            temp1 = platforms[platforms.Count - 1].getVector();
+            temp1 = (Vector2)platforms[platforms.Count - 1];
             int yLoc = (int)temp1.Y;
             int newY = random.Next(yLoc - 125, yLoc - 50);
             int newX = random.Next(0, 280);
-            platforms.Add(new Platform(new Vector2(newX, newY)));
+            platforms.Add(new Vector2(newX, newY));
             platforms.RemoveAt(0);
 
             int enemyProb = random.Next(0, 100);
@@ -462,19 +366,6 @@ class Game
         }
     }
 
-    public Boolean hittingPlat(Vector2 charLocation, List<Platform> platforms)
-    {
-        foreach (Platform platform in platforms)
-        {
-            if (platform.hittingPlatform(charLocation))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public Boolean hitting(Vector2 charLocation, ArrayList platforms)
     {
         foreach (Vector2 platform in platforms)
@@ -486,11 +377,6 @@ class Game
         }
 
         return false;
-    }
-
-    public Boolean isGameOver(Vector2 playerLocation)
-    {
-        return playerLocation.Y > Resolution.Y;
     }
 
 }
