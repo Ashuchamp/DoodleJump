@@ -1,8 +1,0 @@
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Debug\netcoreapp1.0\Game.deps.json
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Debug\netcoreapp1.0\Game.dll
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Debug\netcoreapp1.0\Game.pdb
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Temp\Debug\netcoreapp1.0\Game.csprojAssemblyReference.cache
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Temp\Debug\netcoreapp1.0\Game.csproj.CoreCompileInputs.cache
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Temp\Debug\netcoreapp1.0\Game.AssemblyInfo.cs
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Temp\Debug\netcoreapp1.0\Game.dll
-C:\Users\brian\Source\Repos\project-2---recreate-a-classic-video-game-clash-of-the-bubbas\minimalist-game-framework-core\Builds\Temp\Debug\netcoreapp1.0\Game.pdb
