@@ -45,7 +45,11 @@ namespace Game
             this.location = location;
         }
 
-        
+        public void enemy2Hit()
+        {
+            Texture enemy2 = Engine.LoadTexture("enemy1.png");
+            health--;
+        }
 
         public Boolean isDead()
         {
