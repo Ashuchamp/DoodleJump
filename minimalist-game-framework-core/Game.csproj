@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs" />
     <Compile Include="Engine\Audio.cs" />
     <Compile Include="Engine\Utility\Bounds2.cs" />
     <Compile Include="Engine\Utility\Color.cs" />
