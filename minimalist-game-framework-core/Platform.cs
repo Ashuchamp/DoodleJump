@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-internal class Platform
+class Platform
 {
     private int numTimesTouched;
     private Vector2 vector;

@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Powerup.cs;
 
-class Character
+internal class Character
 {
     Texture charTexture = Engine.LoadTexture("charR.png");
     //readonly Texture charLeft = Engine.LoadTexture("charL.png");

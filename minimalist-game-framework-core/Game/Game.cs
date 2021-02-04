@@ -58,9 +58,9 @@ class Game
     int score = 0;
     int count = 0;
     Boolean jump = false;
-
     Boolean compiled = false;
     Boolean movingDown = false;
+    Character mainCharacter = new Character();
     int downCount = 0;
     int lastPlatY = 470;
     public void Update()
@@ -115,8 +115,8 @@ class Game
         time++;
 
         makePlatforms();
-        charActions();
-
+        //charActions();
+        mainCharacter.respondToKey(Engine.GetKeyHeld(Key.A));
         jumping();
         bulletStuff();
         //}
