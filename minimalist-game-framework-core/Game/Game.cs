@@ -50,21 +50,26 @@ class Game
     //        }
     //    }
 
+    private int height;
+    private int score;
+    private int count;
+    private Boolean jump;
+    private Boolean compiled;
+    private Boolean movingDown;
+    private int downCount;
+    private int lastPlatY;
     public Game()
     {
-
+        lastPlatY = 470;
+        height = 470;
     }
 
-    int score = 0;
-    int count = 0;
-    Boolean jump = false;
-    Boolean compiled = false;
-    Boolean movingDown = false;
-    Character mainCharacter = new Character();
-    int downCount = 0;
-    int lastPlatY = 470;
     public void Update()
     {
+        if (height > score)
+        {
+            score = height;
+        }
         //platforms.Add(plat1);
         //platforms.Add(plat2);
         //platforms.Add(plat3);
@@ -73,6 +78,7 @@ class Game
         if (!jump && !movingDown)
         {
             charLocation.Y += 5;
+            height -= 5;
         }
         //charLocation.Y += 5;
 
@@ -106,7 +112,7 @@ class Game
         {
             Engine.DrawTexture(enemyPic, enemy);
         }
-        foreach(Vector2 tramp in trampolines)
+        foreach (Vector2 tramp in trampolines)
         {
             Engine.DrawTexture(trampolineTex, tramp);
         }
@@ -115,13 +121,13 @@ class Game
         time++;
 
         makePlatforms();
-        //charActions();
-        mainCharacter.respondToKey(Engine.GetKeyHeld(Key.A));
+        charActions();
+
         jumping();
         bulletStuff();
         //}
 
-        
+
         //breakPlatform();
 
     }
@@ -161,16 +167,17 @@ class Game
             jump = true;
             if (count < 25 && jump == true)
             {
-                score++;
                 count++;
                 double x;
                 if (hitting(charLocation, trampolines))
                 {
                     x = charLocation.Y - 20;
+                    height += 20;
                 }
                 else
                 {
                     x = charLocation.Y - 5;
+                    height += 5;
                 }
                 charLocation.Y = (float)x;
                 System.Threading.Thread.Sleep(10);
@@ -358,7 +365,7 @@ class Game
                 enemies.Add(enemyTemp);
             }
 
-            if(trampolineProb < 10)
+            if (trampolineProb < 10)
             {
                 Vector2 trampolineTemp = new Vector2(newX, newY - 40);
                 trampolines.Add(trampolineTemp);
