@@ -116,7 +116,7 @@ class Game
 
         makePlatforms();
         //charActions();
-        mainCharacter.respondToKey(Engine.GetKeyHeld(Key.A));
+        //mainCharacter.respondToKey(Engine.GetKeyHeld());
         jumping();
         bulletStuff();
         //}
